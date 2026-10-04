@@ -19,17 +19,10 @@ function draw(){
 }
 draw();
 
-const dot=document.querySelector(".cur-dot"),ring=document.querySelector(".cur-ring"),glow=document.querySelector(".glow");
-let rx=0,ry=0,tx=0,ty=0;
+const glow=document.querySelector(".glow");
 addEventListener("mousemove",e=>{
-  mouse.x=tx=e.clientX;mouse.y=ty=e.clientY;
-  dot.style.left=tx+"px";dot.style.top=ty+"px";
-  glow.style.setProperty("--gx",tx+"px");glow.style.setProperty("--gy",ty+"px");
-});
-(function follow(){rx+=(tx-rx)*.15;ry+=(ty-ry)*.15;ring.style.left=rx+"px";ring.style.top=ry+"px";requestAnimationFrame(follow)})();
-document.querySelectorAll("a,.badges i,.chip,#enter,.avatar-wrap").forEach(el=>{
-  el.addEventListener("mouseenter",()=>ring.classList.add("hov"));
-  el.addEventListener("mouseleave",()=>ring.classList.remove("hov"));
+  mouse.x=e.clientX;mouse.y=e.clientY;
+  glow.style.setProperty("--gx",e.clientX+"px");glow.style.setProperty("--gy",e.clientY+"px");
 });
 
 const card=document.getElementById("card");
