@@ -8,8 +8,10 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,Ari
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
 .vig{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.85) 100%)}
 
-#enter{position:fixed;inset:0;z-index:50;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity 1s,filter 1s,transform 1s}
+#enter{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;gap:26px;align-items:center;justify-content:center;transition:opacity 1s,filter 1s,transform 1s}
 #enter.out{opacity:0;filter:blur(18px);transform:scale(1.15);pointer-events:none}
+.dev{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#777;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:7px 14px;border-radius:999px;animation:spacein 1.6s .4s both}
+.dev b{width:7px;height:7px;border-radius:50%;background:#e5a93b;animation:blink 1.2s steps(2) infinite}
 .enter-inner{display:flex;align-items:center;gap:22px}
 .enter-inner .txt{font-size:13px;letter-spacing:8px;text-transform:uppercase;color:#bbb;animation:flick 3s infinite,spacein 1.6s both}
 .enter-inner .line{height:1px;width:70px;background:linear-gradient(90deg,transparent,#fff);animation:grow 1.6s both}
