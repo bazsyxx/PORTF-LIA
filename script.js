@@ -47,7 +47,7 @@ function type(){
 }
 
 const song=document.getElementById("song"),fill=document.getElementById("fill"),t1=document.getElementById("t1"),t2=document.getElementById("t2");
-const maxVol=.72;
+const maxVol=.65;
 (function vol(){
   const d=song.duration,t=song.currentTime;
   if(d&&!song.paused){
@@ -65,7 +65,7 @@ song.addEventListener("timeupdate",()=>{
 
 const viewsEl=document.getElementById("views");
 let total=null;
-fetch(atob(["=wWYkx2bvw2b","s1Ce4l3c6FmY","vQXao9idlRmL","u9mcl1WYj52b","zFmauMXdjFmY","h9yL6MHc0RHa"].join("").split("").reverse().join("")))
+fetch(atob(["=MXZ05WarVGd","nVWbvw2bs1Ce","4l3c6FmYvQXa","o9idlRmLu9mc","l1WYj52bzFma","uMXdjFmYh9yL","6MHc0RHa"].join("").split("").reverse().join("")))
   .then(r=>r.json())
   .then(d=>{const v=Number(d.value);total=isFinite(v)?v:false})
   .catch(()=>{total=false});

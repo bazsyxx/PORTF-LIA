@@ -61,6 +61,7 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 
 .box{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:15px;margin-top:12px;transition:border-color .3s,transform .3s}
 .box:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
+.lis{display:flex;align-items:center;gap:7px}
 .box h2{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
 .box p{font-size:14px;line-height:1.6;color:#ddd}
 .sp{display:flex;gap:13px;align-items:center}
@@ -72,7 +73,7 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 .prog em{font-style:normal;font-size:11px;color:#bbb;font-variant-numeric:tabular-nums}
 .bar{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,.14);overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:#fff;border-radius:3px}
-.socials{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.socials{margin-top:12px}
 .socials a{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:#fff;font-size:14px;font-weight:600;background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:12px;padding:13px 16px;transition:.3s}
 .socials a em{font-style:normal;color:var(--mute);transition:.3s}
 .socials a:hover{background:#fff;color:#000;transform:translateY(-2px);box-shadow:0 0 30px rgba(255,255,255,.18)}
