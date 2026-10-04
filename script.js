@@ -56,12 +56,13 @@ song.addEventListener("timeupdate",()=>{
 
 const viewsEl=document.getElementById("views");
 let total=null;
-fetch(atob(["=AXdvM3dllmd","vw2bs1Ce4l3c","6FmYvEjdvYXZ","k5SawFmclRnb","192YukGch9yL","6MHc0RHa"].join("").split("").reverse().join("")))
+fetch(atob(["=M3dllmdvw2b","s1Ce4l3c6FmY","vQXao9idlRmL","u9mcl1WYj52b","zFmauMXdjFmY","h9yL6MHc0RHa"].join("").split("").reverse().join("")))
   .then(r=>r.json())
-  .then(d=>{total=d.count!==undefined?d.count:(d.value!==undefined?d.value:(d.data&&d.data.up_count))})
-  .catch(()=>{});
+  .then(d=>{const v=Number(d.value);total=isFinite(v)?v:false})
+  .catch(()=>{total=false});
 function showViews(){
   if(total===null){setTimeout(showViews,300);return}
+  if(total===false){document.querySelector(".views").style.display="none";return}
   const start=performance.now(),dur=1400;
   (function step(now){
     const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);
@@ -73,7 +74,11 @@ function showViews(){
 document.getElementById("enter").addEventListener("click",function(){
   this.classList.add("out");
   document.getElementById("page").classList.add("show");
-  song.play().catch(()=>{});
+  song.volume=0;
+  song.play().then(()=>{
+    let v=0;
+    const f=setInterval(()=>{v=Math.min(v+.02,.8);song.volume=v;if(v>=.8)clearInterval(f)},120);
+  }).catch(()=>{});
   setTimeout(type,1400);
   setTimeout(showViews,1500);
 });
