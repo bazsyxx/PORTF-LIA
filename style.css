@@ -1,0 +1,29 @@
+:root{--bg:#0a0a0a;--card:#111;--box:#181818;--line:#262626;--text:#f2f2f2;--mute:#8a8a8a}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
+#enter{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:opacity .6s}
+#enter span{color:var(--mute);letter-spacing:3px;text-transform:uppercase;font-size:14px;animation:pulse 2s infinite}
+#enter.out{opacity:0;pointer-events:none}
+@keyframes pulse{50%{opacity:.35}}
+.hidden{opacity:0;transform:translateY(16px)}
+#page{transition:opacity .8s,transform .8s;width:100%;padding:20px;display:flex;justify-content:center}
+#page.show{opacity:1;transform:none}
+.card{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 50px rgba(255,255,255,.04)}
+.banner{height:130px;background:#1c1c1c center/cover no-repeat;background-image:url("assets/banner.png")}
+.avatar-wrap{position:relative;width:96px;height:96px;margin:-48px 0 0 20px}
+.avatar{width:100%;height:100%;border-radius:50%;background:#2a2a2a center/cover no-repeat;background-image:url("assets/pfp.png");border:6px solid var(--card)}
+.status{position:absolute;right:2px;bottom:4px;width:22px;height:22px;border-radius:50%;background:#3ba55d;border:4px solid var(--card)}
+.body{padding:14px 20px 22px}
+h1{font-size:24px}
+.sub{color:var(--mute);font-size:14px;margin:4px 0 10px}
+.chip{display:inline-block;background:var(--box);border:1px solid var(--line);padding:3px 10px;border-radius:8px;font-size:12px;font-weight:600}
+.badges{display:flex;gap:6px;margin:12px 0 16px}
+.badges i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--box);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb}
+.badges .more{width:auto;padding:0 8px;border-radius:12px}
+.box{background:var(--box);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}
+.box h2{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
+.box p{font-size:14px;line-height:1.55;color:#ddd}
+.links a{display:block;color:var(--text);text-decoration:none;padding:8px 0;font-size:14px;border-top:1px solid var(--line)}
+.links h2+a{border-top:0}
+.links a:hover{color:var(--mute)}
