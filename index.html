@@ -7,36 +7,56 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<canvas id="bg"></canvas>
+<div class="glow"></div>
+<div class="grain"></div>
+<div class="vig"></div>
+<div class="cur-dot"></div>
+<div class="cur-ring"></div>
+
 <div id="enter">
-  <span>Kattints a belépéshez</span>
+  <div class="enter-inner">
+    <span class="line"></span>
+    <span class="txt">Kattints a belépéshez</span>
+    <span class="line"></span>
+  </div>
 </div>
 
-<main id="page" class="hidden">
-  <section class="card">
-    <div class="banner"></div>
-    <div class="avatar-wrap">
+<main id="page">
+  <section class="card" id="card">
+    <div class="shine"></div>
+    <div class="banner"><div class="banner-img"></div></div>
+
+    <div class="avatar-wrap r" style="--d:.15s">
+      <div class="ring"></div>
       <div class="avatar"></div>
       <span class="status"></span>
     </div>
 
     <div class="body">
-      <h1>Bazsyxx</h1>
-      <p class="sub">yvxal • he/him</p>
-      <div class="chip">⚡ LEAK</div>
+      <h1 class="r" style="--d:.25s">Bazsyxx</h1>
+      <p class="sub r" style="--d:.35s"><span id="type"></span><b class="caret"></b></p>
+      <div class="chip r" style="--d:.45s">⚡ LEAK</div>
 
-      <div class="badges">
-        <i>●</i><i>◆</i><i>▲</i><i>■</i><i>◉</i><i>✦</i><i class="more">+1</i>
+      <div class="badges r" style="--d:.55s">
+        <i data-t="Korai támogató">●</i>
+        <i data-t="Fejlesztő">◆</i>
+        <i data-t="Bug vadász">▲</i>
+        <i data-t="Játékos">■</i>
+        <i data-t="Booster">◉</i>
+        <i data-t="Veterán">✦</i>
+        <i class="more" data-t="Még egy">+1</i>
       </div>
 
-      <div class="box">
+      <div class="box r" style="--d:.7s">
         <h2>Rólam</h2>
         <p>Sziasztok, Bazsyxx vagyok. Ide jön majd a bemutatkozásom, amit később átírok a sajátomra.</p>
       </div>
 
-      <div class="box links">
+      <div class="box links r" style="--d:.85s">
         <h2>Linkek</h2>
-        <a href="#">Discord</a>
-        <a href="#">GitHub</a>
+        <a href="#"><span>Discord</span><em>→</em></a>
+        <a href="#"><span>GitHub</span><em>→</em></a>
       </div>
     </div>
   </section>

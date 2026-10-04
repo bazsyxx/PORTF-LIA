@@ -1,29 +1,79 @@
-:root{--bg:#0a0a0a;--card:#111;--box:#181818;--line:#262626;--text:#f2f2f2;--mute:#8a8a8a}
-*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#050505;--card:rgba(14,14,14,.72);--box:rgba(255,255,255,.04);--line:rgba(255,255,255,.09);--text:#f4f4f4;--mute:#8c8c8c}
+*{box-sizing:border-box;margin:0;padding:0;cursor:none}
 html,body{height:100%}
-body{background:var(--bg);color:var(--text);font-family:"Segoe UI",Arial,sans-serif;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
-#enter{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;transition:opacity .6s}
-#enter span{color:var(--mute);letter-spacing:3px;text-transform:uppercase;font-size:14px;animation:pulse 2s infinite}
-#enter.out{opacity:0;pointer-events:none}
-@keyframes pulse{50%{opacity:.35}}
-.hidden{opacity:0;transform:translateY(16px)}
-#page{transition:opacity .8s,transform .8s;width:100%;padding:20px;display:flex;justify-content:center}
-#page.show{opacity:1;transform:none}
-.card{width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 50px rgba(255,255,255,.04)}
-.banner{height:130px;background:#1c1c1c center/cover no-repeat;background-image:url("assets/banner.png")}
-.avatar-wrap{position:relative;width:96px;height:96px;margin:-48px 0 0 20px}
-.avatar{width:100%;height:100%;border-radius:50%;background:#2a2a2a center/cover no-repeat;background-image:url("assets/pfp.png");border:6px solid var(--card)}
-.status{position:absolute;right:2px;bottom:4px;width:22px;height:22px;border-radius:50%;background:#3ba55d;border:4px solid var(--card)}
-.body{padding:14px 20px 22px}
-h1{font-size:24px}
-.sub{color:var(--mute);font-size:14px;margin:4px 0 10px}
-.chip{display:inline-block;background:var(--box);border:1px solid var(--line);padding:3px 10px;border-radius:8px;font-size:12px;font-weight:600}
-.badges{display:flex;gap:6px;margin:12px 0 16px}
-.badges i{font-style:normal;width:24px;height:24px;border-radius:50%;background:var(--box);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:#bbb}
-.badges .more{width:auto;padding:0 8px;border-radius:12px}
-.box{background:var(--box);border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}
-.box h2{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mute);margin-bottom:8px}
-.box p{font-size:14px;line-height:1.55;color:#ddd}
-.links a{display:block;color:var(--text);text-decoration:none;padding:8px 0;font-size:14px;border-top:1px solid var(--line)}
+body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,Arial,sans-serif;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#bg{position:fixed;inset:0;z-index:0}
+.glow{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(500px circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.07),transparent 60%)}
+.grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.vig{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.85) 100%)}
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:99;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
+.cur-dot{width:6px;height:6px;background:#fff}
+.cur-ring{width:34px;height:34px;border:1px solid rgba(255,255,255,.45);transition:width .25s,height .25s,background .25s,border-color .25s}
+.cur-ring.hov{width:56px;height:56px;background:rgba(255,255,255,.08);border-color:#fff}
+
+#enter{position:fixed;inset:0;z-index:50;background:#000;display:flex;align-items:center;justify-content:center;transition:opacity 1s,filter 1s,transform 1s}
+#enter.out{opacity:0;filter:blur(18px);transform:scale(1.15);pointer-events:none}
+.enter-inner{display:flex;align-items:center;gap:22px}
+.enter-inner .txt{font-size:13px;letter-spacing:8px;text-transform:uppercase;color:#bbb;animation:flick 3s infinite,spacein 1.6s both}
+.enter-inner .line{height:1px;width:70px;background:linear-gradient(90deg,transparent,#fff);animation:grow 1.6s both}
+.enter-inner .line:last-child{background:linear-gradient(270deg,transparent,#fff)}
+@keyframes spacein{from{letter-spacing:30px;opacity:0;filter:blur(8px)}}
+@keyframes grow{from{width:0}}
+@keyframes flick{0%,100%{opacity:1}45%{opacity:.4}50%{opacity:1}55%{opacity:.6}}
+
+#page{position:relative;z-index:10;width:100%;padding:20px;display:flex;justify-content:center;perspective:1100px;opacity:0;pointer-events:none}
+#page.show{opacity:1;pointer-events:auto}
+.card{position:relative;width:100%;max-width:390px;background:var(--card);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);border:1px solid var(--line);border-radius:20px;overflow:hidden;transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .4s;box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02);opacity:0;transform:translateY(40px) scale(.94);filter:blur(10px)}
+#page.show .card{animation:cardin 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes cardin{to{opacity:1;transform:none;filter:none}}
+.card:hover{box-shadow:0 40px 110px rgba(0,0,0,.9),0 0 60px rgba(255,255,255,.05)}
+.shine{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.10),transparent 60%);opacity:0;transition:opacity .3s}
+.card:hover .shine{opacity:1}
+
+.banner{height:140px;overflow:hidden;position:relative;background:#161616}
+.banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(14,14,14,.95))}
+.banner-img{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#2c2c2c,#111) center/cover;background-image:url("assets/banner.png"),linear-gradient(135deg,#1a1a1a,#2c2c2c,#111);animation:kb 18s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12) translate(-2%,-2%)}}
+
+.avatar-wrap{position:relative;width:100px;height:100px;margin:-52px 0 0 22px;z-index:6}
+.ring{position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,#fff,#333,#888,#111,#fff);animation:spin 5s linear infinite;filter:blur(.5px)}
+.avatar{position:absolute;inset:0;border-radius:50%;background:#262626 center/cover no-repeat;background-image:url("assets/pfp.png");border:5px solid #0e0e0e;transition:transform .4s}
+.avatar-wrap:hover .avatar{transform:scale(1.06) rotate(-3deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.status{position:absolute;right:0;bottom:2px;width:24px;height:24px;border-radius:50%;background:#3ba55d;border:4px solid #0e0e0e}
+.status::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid #3ba55d;animation:ping 2s infinite}
+@keyframes ping{from{transform:scale(.8);opacity:.9}to{transform:scale(1.8);opacity:0}}
+
+.body{padding:14px 22px 24px;position:relative;z-index:6}
+.r{opacity:0;transform:translateY(18px);filter:blur(6px)}
+#page.show .r{animation:rin .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--d) + .6s)}
+@keyframes rin{to{opacity:1;transform:none;filter:none}}
+
+h1{font-size:27px;font-weight:800;letter-spacing:1px;background:linear-gradient(110deg,#777 20%,#fff 40%,#fff 60%,#777 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 4s linear infinite}
+@keyframes shim{to{background-position:-250% 0}}
+.sub{color:var(--mute);font-size:14px;margin:5px 0 11px;min-height:20px}
+.caret{display:inline-block;width:1px;height:14px;background:#aaa;margin-left:2px;vertical-align:middle;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.chip{display:inline-block;background:var(--box);border:1px solid var(--line);padding:4px 11px;border-radius:9px;font-size:12px;font-weight:700;letter-spacing:1px;transition:.3s}
+.chip:hover{background:#fff;color:#000;transform:translateY(-2px)}
+
+.badges{display:flex;gap:7px;margin:14px 0 16px}
+.badges i{position:relative;font-style:normal;width:26px;height:26px;border-radius:50%;background:var(--box);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;color:#ccc;transition:.3s}
+.badges i:hover{background:#fff;color:#000;transform:translateY(-4px) rotate(10deg)}
+.badges i::after{content:attr(data-t);position:absolute;bottom:135%;left:50%;transform:translate(-50%,6px);background:#fff;color:#000;font-size:11px;font-weight:600;padding:4px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:.25s}
+.badges i:hover::after{opacity:1;transform:translate(-50%,0)}
+.badges .more{width:auto;padding:0 9px;border-radius:13px}
+
+.box{background:var(--box);border:1px solid var(--line);border-radius:14px;padding:15px;margin-top:11px;transition:border-color .3s,transform .3s}
+.box:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
+.box h2{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--mute);margin-bottom:9px}
+.box p{font-size:14px;line-height:1.6;color:#ddd}
+.links a{display:flex;justify-content:space-between;align-items:center;color:var(--text);text-decoration:none;padding:10px 0;font-size:14px;border-top:1px solid var(--line);transition:padding .3s,color .3s}
 .links h2+a{border-top:0}
-.links a:hover{color:var(--mute)}
+.links a em{font-style:normal;opacity:0;transform:translateX(-8px);transition:.3s}
+.links a:hover{padding-left:8px;color:#fff}
+.links a:hover em{opacity:1;transform:none}
+
+@media(hover:none){*{cursor:auto}.cur-dot,.cur-ring{display:none}}
+@media(max-width:420px){.card{border-radius:16px}}
