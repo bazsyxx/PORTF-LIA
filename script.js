@@ -34,6 +34,19 @@ card.addEventListener("mousemove",e=>{
 });
 card.addEventListener("mouseleave",()=>{card.style.transform=""});
 
+const clip=document.getElementById("clip"),more=document.getElementById("more");
+function checkBio(){
+  clip.classList.remove("short");
+  if(clip.scrollHeight<=68+4){clip.classList.add("short");more.classList.add("hide")}
+}
+addEventListener("load",checkBio);
+more.addEventListener("click",()=>{
+  const open=clip.classList.toggle("open");
+  more.classList.toggle("open",open);
+  clip.style.maxHeight=open?clip.scrollHeight+"px":"";
+  more.firstChild.textContent=open?"Kevesebb":"Tovább olvasom";
+});
+
 const words=["yvxal • he/him","yvxal","Bazsyxx"];
 const out=document.getElementById("type");
 let wi=0,ci=0,del=false;
