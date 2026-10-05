@@ -95,7 +95,7 @@ function showViews(){
 
 document.getElementById("enter").addEventListener("click",function(){
   this.classList.add("out");
-  document.getElementById("page").classList.add("show");
+  document.getElementById("page").classList.add("show");document.getElementById("clockw").classList.add("show");
   song.volume=0;
   song.play().catch(()=>{});
   setTimeout(type,1400);
@@ -131,8 +131,7 @@ document.getElementById("enter").addEventListener("click",function(){
 /* ---- Discord státusz (Lanyard, csak discord_status) ---- */
 (function(){
   const ID="688189917427269744",el=document.getElementById("status"),ok=["online","idle","dnd","offline"];
-  const names={online:"Elérhető",idle:"Távol",dnd:"Ne zavarj",offline:"Offline"},tx=document.getElementById("stxt");
-  const set=s=>{s=ok.includes(s)?s:"offline";el.dataset.s=s;tx.textContent=names[s]};
+  const set=s=>{el.dataset.s=ok.includes(s)?s:"offline"};
   let ws,hb,poll;
   function startPoll(){
     if(poll)return;

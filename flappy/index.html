@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<title>Flappy Bazsi</title>
+<title>Flappy Gpsy</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:#050505;color:#f4f4f4;font-family:"Segoe UI",system-ui,Arial,sans-serif;overflow:hidden}
@@ -72,7 +72,7 @@ function draw(){
   x.lineWidth=2.5;x.strokeStyle="#fff";x.beginPath();x.arc(0,0,R,0,6.283);x.stroke();
   x.restore();
   if(st==="play")txt(score,70,46);
-  if(st==="ready"){txt("FLAPPY BAZSI",190,30);txt("Kattints / szóköz az ugráshoz",GROUND-60,14,"#8c8c8c")}
+  if(st==="ready"){txt("FLAPPY GPSY",190,30);txt("Kattints / szóköz az ugráshoz",GROUND-60,14,"#8c8c8c")}
   if(st==="dead"){
     x.fillStyle="rgba(0,0,0,.6)";x.fillRect(0,0,W,H);
     txt("VÉGE",200,40);txt("Pont: "+score,250,22);txt("Rekord: "+best,285,16,"#8c8c8c");

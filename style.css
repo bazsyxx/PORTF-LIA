@@ -105,9 +105,27 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 @media(max-width:420px){.card{border-radius:16px}}
 
 .socials a+a{margin-top:8px}
-.stat{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mute)}
-#status{--sc:#747f8d;width:9px;height:9px;border-radius:50%;background:var(--sc);box-shadow:0 0 8px var(--sc);transition:background .4s,box-shadow .4s}
-#status[data-s=online]{--sc:#3ba55d}
-#status[data-s=idle]{--sc:#faa81a}
-#status[data-s=dnd]{--sc:#ed4245}
-#status[data-s=offline]{--sc:#747f8d}
+.status{--sc:#3ba55d;position:absolute;right:0;bottom:2px;width:24px;height:24px;border-radius:50%;background:var(--sc);border:4px solid #090909;transition:background .4s}
+.status::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--sc);animation:ping 2s infinite;transition:border-color .4s}
+.status::before{content:"";position:absolute;background:#090909;opacity:0;transition:opacity .3s}
+.status[data-s=online]{--sc:#3ba55d}
+.status[data-s=idle]{--sc:#faa81a}
+.status[data-s=dnd]{--sc:#ed4245}
+.status[data-s=offline]{--sc:#747f8d}
+.status[data-s=idle]::before{opacity:1;width:9px;height:9px;border-radius:50%;left:-3px;top:-3px}
+.status[data-s=dnd]::before{opacity:1;width:10px;height:4px;border-radius:2px;left:3px;top:6px}
+.status[data-s=offline]::before{opacity:1;width:8px;height:8px;border-radius:50%;left:4px;top:4px}
+.clockw{position:fixed;top:24px;right:24px;z-index:10;width:300px;opacity:0;transition:opacity 1s .9s;pointer-events:none}
+.clockw.show{opacity:1;pointer-events:auto}
+.clockw .box{margin-top:0;background:var(--card);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+@media(max-width:1000px){
+  .clockw{top:12px;right:auto;left:50%;transform:translateX(-50%);width:auto}
+  .clockw .box{padding:8px 16px;border-radius:999px}
+  .clockw h2,.clockw .analog,.clockw .date{display:none}
+  .clockw .tz{margin:0 0 0 2px}
+  .clockw .time{font-size:20px}
+  .clockw .time small{font-size:12px}
+  .clockw .clockrow{gap:10px}
+  .clockw .digi{display:flex;align-items:baseline;gap:10px}
+  #page{padding-top:64px}
+}
