@@ -101,3 +101,55 @@ document.getElementById("enter").addEventListener("click",function(){
   setTimeout(type,1400);
   setTimeout(showViews,1500);
 });
+
+/* ---- Óra (Europe/Budapest) ---- */
+(function(){
+  const NS="http://www.w3.org/2000/svg",ticks=document.getElementById("ticks");
+  for(let i=0;i<12;i++){const l=document.createElementNS(NS,"line"),big=i%3===0;
+    l.setAttribute("x1",50);l.setAttribute("x2",50);l.setAttribute("y1",big?6:8);l.setAttribute("y2",big?13:11);
+    l.setAttribute("class","tk"+(big?" big":""));l.setAttribute("transform","rotate("+i*30+" 50 50)");ticks.appendChild(l)}
+  const tz="Europe/Budapest";
+  const f=new Intl.DateTimeFormat("en-GB",{timeZone:tz,hour:"2-digit",minute:"2-digit",second:"2-digit",hourCycle:"h23"});
+  const df=new Intl.DateTimeFormat("hu-HU",{timeZone:tz,year:"numeric",month:"long",day:"numeric",weekday:"long"});
+  const hh=document.getElementById("hh"),mh=document.getElementById("mh"),sh=document.getElementById("sh"),
+        hm=document.getElementById("hm"),ss=document.getElementById("ss"),dt=document.getElementById("date");
+  let lastDate="";
+  function tick(){
+    const now=new Date(),p={};
+    f.formatToParts(now).forEach(x=>p[x.type]=x.value);
+    const H=+p.hour,M=+p.minute,S=+p.second+now.getMilliseconds()/1000;
+    sh.setAttribute("transform","rotate("+S*6+" 50 50)");
+    mh.setAttribute("transform","rotate("+(M+S/60)*6+" 50 50)");
+    hh.setAttribute("transform","rotate("+((H%12)+M/60)*30+" 50 50)");
+    hm.textContent=p.hour+":"+p.minute;ss.textContent=p.second;
+    const d=df.format(now);if(d!==lastDate){dt.textContent=d;lastDate=d}
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+/* ---- Discord státusz (Lanyard, csak discord_status) ---- */
+(function(){
+  const ID="688189917427269744",el=document.getElementById("status"),ok=["online","idle","dnd","offline"];
+  const set=s=>{el.dataset.s=ok.includes(s)?s:"offline"};
+  let ws,hb,poll;
+  function startPoll(){
+    if(poll)return;
+    const go=()=>fetch("https://api.lanyard.rest/v1/users/"+ID).then(r=>r.json()).then(d=>{if(d&&d.success)set(d.data.discord_status)}).catch(()=>{});
+    go();poll=setInterval(go,10000);
+  }
+  function stopPoll(){clearInterval(poll);poll=null}
+  function connect(){
+    try{ws=new WebSocket("wss://api.lanyard.rest/socket")}catch(e){startPoll();return}
+    ws.onmessage=e=>{
+      const m=JSON.parse(e.data);
+      if(m.op===1){
+        ws.send(JSON.stringify({op:2,d:{subscribe_to_id:ID}}));
+        clearInterval(hb);hb=setInterval(()=>ws.readyState===1&&ws.send(JSON.stringify({op:3})),m.d.heartbeat_interval);
+      }else if(m.op===0&&m.d){set(m.d.discord_status);stopPoll()}
+    };
+    ws.onclose=()=>{clearInterval(hb);startPoll();setTimeout(connect,5000)};
+    ws.onerror=()=>ws.close();
+  }
+  startPoll();connect();
+})();
