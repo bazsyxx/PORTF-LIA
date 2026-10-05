@@ -113,7 +113,7 @@ document.getElementById("enter").addEventListener("click",function(){
   const df=new Intl.DateTimeFormat("hu-HU",{timeZone:tz,year:"numeric",month:"long",day:"numeric",weekday:"long"});
   const hh=document.getElementById("hh"),mh=document.getElementById("mh"),sh=document.getElementById("sh"),
         hm=document.getElementById("hm"),ss=document.getElementById("ss"),dt=document.getElementById("date");
-  let lastDate="";
+  let lastDate="",lastSec="";
   function tick(){
     const now=new Date(),p={};
     f.formatToParts(now).forEach(x=>p[x.type]=x.value);
@@ -121,8 +121,8 @@ document.getElementById("enter").addEventListener("click",function(){
     sh.setAttribute("transform","rotate("+S*6+" 50 50)");
     mh.setAttribute("transform","rotate("+(M+S/60)*6+" 50 50)");
     hh.setAttribute("transform","rotate("+((H%12)+M/60)*30+" 50 50)");
-    hm.textContent=p.hour+":"+p.minute;ss.textContent=p.second;
-    const d=df.format(now);if(d!==lastDate){dt.textContent=d;lastDate=d}
+    if(p.second!==lastSec){lastSec=p.second;hm.textContent=p.hour+":"+p.minute;ss.textContent=p.second;
+      const d=df.format(now);if(d!==lastDate){dt.textContent=d;lastDate=d}}
     requestAnimationFrame(tick);
   }
   tick();
@@ -131,7 +131,8 @@ document.getElementById("enter").addEventListener("click",function(){
 /* ---- Discord státusz (Lanyard, csak discord_status) ---- */
 (function(){
   const ID="688189917427269744",el=document.getElementById("status"),ok=["online","idle","dnd","offline"];
-  const set=s=>{el.dataset.s=ok.includes(s)?s:"offline"};
+  const names={online:"Elérhető",idle:"Távol",dnd:"Ne zavarj",offline:"Offline"},tx=document.getElementById("stxt");
+  const set=s=>{s=ok.includes(s)?s:"offline";el.dataset.s=s;tx.textContent=names[s]};
   let ws,hb,poll;
   function startPoll(){
     if(poll)return;

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Flappy Bazsi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#050505;color:#f4f4f4;font-family:"Segoe UI",system-ui,Arial,sans-serif;overflow:hidden}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;background:radial-gradient(ellipse at center,#141414,#050505 75%)}
+canvas{height:min(78vh,640px);aspect-ratio:360/600;max-width:94vw;border:1px solid rgba(255,255,255,.1);border-radius:18px;background:#0a0a0a;box-shadow:0 30px 90px rgba(0,0,0,.8);touch-action:none;cursor:pointer}
+a{color:#8c8c8c;text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:.3s}
+a:hover{color:#fff}
+</style>
+</head>
+<body>
+<canvas id="c" width="360" height="600"></canvas>
+<a href="/">← Vissza</a>
+<script>
+const cv=document.getElementById("c"),x=cv.getContext("2d"),W=360,H=600;
+const pfp=new Image();pfp.src="../assets/pfp.gif";
+const R=18,GAP=150,PW=56,GRAV=.42,JUMP=-7.2,SPD=2.2,GROUND=H-40;
+let st="ready",bird,pipes,score,best=0,t=0,last=0,shake=0,stars=[];
+try{best=+localStorage.getItem("flappyBest")||0}catch(e){}
+for(let i=0;i<50;i++)stars.push({x:Math.random()*W,y:Math.random()*GROUND,r:Math.random()*1.4+.3,s:Math.random()*.4+.1});
+function reset(){bird={y:H/2-40,v:0,rot:0};pipes=[];score=0;t=0;st="ready"}
+function flap(){
+  if(st==="dead"){if(t>25)reset();return}
+  if(st==="ready"){st="play";pipes.push(mk(W+80))}
+  bird.v=JUMP;
+}
+function mk(px){return{x:px,gy:90+Math.random()*(GROUND-GAP-180),done:false}}
+addEventListener("keydown",e=>{if(e.code==="Space"||e.code==="ArrowUp"){e.preventDefault();flap()}});
+cv.addEventListener("pointerdown",e=>{e.preventDefault();flap()});
+function die(){st="dead";t=0;shake=10;if(score>best){best=score;try{localStorage.setItem("flappyBest",best)}catch(e){}}}
+function update(k){
+  t+=k;
+  stars.forEach(s=>{s.x-=s.s*k*(st==="dead"?0:1);if(s.x<0)s.x=W});
+  if(st==="ready"){bird.y=H/2-40+Math.sin(t/12)*7;bird.rot=0;return}
+  if(st==="play"||bird.y<GROUND-R){bird.v+=GRAV*k;bird.y+=bird.v*k}
+  bird.rot=Math.max(-.45,Math.min(1.2,bird.v/10));
+  if(st!=="play"){if(bird.y>GROUND-R){bird.y=GROUND-R}return}
+  pipes.forEach(p=>p.x-=SPD*k);
+  if(pipes[pipes.length-1].x<W-190)pipes.push(mk(W+20));
+  if(pipes[0].x<-PW)pipes.shift();
+  const bx=90;
+  for(const p of pipes){
+    if(!p.done&&p.x+PW<bx-R){p.done=true;score++}
+    if(bx+R-4>p.x&&bx-R+4<p.x+PW&&(bird.y-R+4<p.gy||bird.y+R-4>p.gy+GAP))die();
+  }
+  if(bird.y+R>GROUND){bird.y=GROUND-R;die()}
+  if(bird.y-R<0){bird.y=R;bird.v=0}
+}
+function pipe(px,top,h){
+  const g=x.createLinearGradient(px,0,px+PW,0);g.addColorStop(0,"#3a3a3a");g.addColorStop(.5,"#8a8a8a");g.addColorStop(1,"#2a2a2a");
+  x.fillStyle=g;x.fillRect(px,top,PW,h);
+  x.strokeStyle="rgba(255,255,255,.35)";x.lineWidth=1.5;x.strokeRect(px+.5,top+.5,PW-1,h-1);
+}
+function txt(s,y,sz,c,a){x.textAlign="center";x.font="700 "+sz+"px 'Segoe UI',Arial";x.fillStyle=c||"#fff";x.globalAlpha=a==null?1:a;x.fillText(s,W/2,y);x.globalAlpha=1}
+function draw(){
+  x.save();
+  if(shake>0){x.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);shake*=.85;if(shake<.5)shake=0}
+  x.fillStyle="#0a0a0a";x.fillRect(-10,-10,W+20,H+20);
+  stars.forEach(s=>{x.fillStyle="rgba(255,255,255,"+(.25+s.r/3)+")";x.beginPath();x.arc(s.x,s.y,s.r,0,6.283);x.fill()});
+  pipes.forEach(p=>{pipe(p.x,-5,p.gy+5);pipe(p.x,p.gy+GAP,GROUND-p.gy-GAP)});
+  x.fillStyle="#161616";x.fillRect(0,GROUND,W,H-GROUND);
+  x.fillStyle="rgba(255,255,255,.3)";x.fillRect(0,GROUND,W,2);
+  x.save();x.translate(90,bird.y);x.rotate(bird.rot);
+  x.shadowColor="rgba(255,255,255,.5)";x.shadowBlur=14;
+  x.beginPath();x.arc(0,0,R,0,6.283);x.fillStyle="#262626";x.fill();x.shadowBlur=0;
+  x.save();x.clip();if(pfp.complete&&pfp.naturalWidth)x.drawImage(pfp,-R,-R,R*2,R*2);x.restore();
+  x.lineWidth=2.5;x.strokeStyle="#fff";x.beginPath();x.arc(0,0,R,0,6.283);x.stroke();
+  x.restore();
+  if(st==="play")txt(score,70,46);
+  if(st==="ready"){txt("FLAPPY BAZSI",190,30);txt("Kattints / szóköz az ugráshoz",GROUND-60,14,"#8c8c8c")}
+  if(st==="dead"){
+    x.fillStyle="rgba(0,0,0,.6)";x.fillRect(0,0,W,H);
+    txt("VÉGE",200,40);txt("Pont: "+score,250,22);txt("Rekord: "+best,285,16,"#8c8c8c");
+    if(t>25)txt("Kattints az újrakezdéshez",340,14,"#bbb",.6+Math.sin(performance.now()/250)*.3);
+  }
+  x.restore();
+}
+function loop(n){const k=Math.min((n-last)/16.667,3)||1;last=n;update(k);draw();requestAnimationFrame(loop)}
+reset();requestAnimationFrame(loop);
+</script>
+</body>
+</html>
