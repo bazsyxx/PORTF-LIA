@@ -170,3 +170,33 @@ addEventListener("pointerdown",e=>{
     document.body.appendChild(s);setTimeout(()=>s.remove(),700);
   }
 });
+
+/* ---- Kurzor gyűrű ---- */
+(function(){
+  if(matchMedia("(hover:none)").matches)return;
+  const c=document.createElement("div");c.className="cur";document.body.appendChild(c);
+  let tx=0,ty=0,x=0,y=0;
+  addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;c.classList.add("on");c.classList.toggle("big",!!e.target.closest("a,button,.bdg,#enter"))});
+  document.addEventListener("mouseleave",()=>c.classList.remove("on"));
+  (function f(){x+=(tx-x)*.18;y+=(ty-y)*.18;c.style.transform="translate("+x+"px,"+y+"px)";requestAnimationFrame(f)})();
+})();
+
+/* ---- Hullócsillagok ---- */
+(function(){
+  const s=document.createElement("canvas");s.id="stars";document.body.appendChild(s);
+  const g=s.getContext("2d");let w,h,list=[];
+  const fit=()=>{w=s.width=innerWidth;h=s.height=innerHeight};fit();addEventListener("resize",fit);
+  function spawn(){const a=.6+Math.random()*.4;list.push({x:Math.random()*w*1.1,y:-20,vx:-(4+Math.random()*4),vy:(2.5+Math.random()*3)*a,l:60+Math.random()*50,life:1})}
+  (function f(){
+    g.clearRect(0,0,w,h);
+    if(Math.random()<.012)spawn();
+    list=list.filter(p=>p.life>0&&p.y<h+80);
+    list.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;p.life-=.004;
+      const m=Math.hypot(p.vx,p.vy),tx=p.x-p.vx/m*p.l,ty=p.y-p.vy/m*p.l;
+      const gr=g.createLinearGradient(p.x,p.y,tx,ty);gr.addColorStop(0,"rgba(255,255,255,"+.8*p.life+")");gr.addColorStop(1,"rgba(255,255,255,0)");
+      g.strokeStyle=gr;g.lineWidth=1.4;g.beginPath();g.moveTo(p.x,p.y);g.lineTo(tx,ty);g.stroke();
+    });
+    requestAnimationFrame(f);
+  })();
+})();
