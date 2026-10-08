@@ -130,14 +130,13 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
   #page{padding-top:64px}
 }
 
-/* ---- Badge-ek ---- */
-.badges{display:flex;gap:7px;margin:4px 0 4px}
-.bdg{position:relative;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#ddd;cursor:default;outline:none;transition:.3s}
-.bdg svg{width:16px;height:16px;filter:drop-shadow(0 0 4px rgba(255,255,255,.35))}
-.bdg:hover,.bdg:focus,.bdg.tip{background:#fff;color:#000;transform:translateY(-3px) rotate(-4deg);box-shadow:0 6px 22px rgba(255,255,255,.22)}
-.bdg:hover svg,.bdg.tip svg{filter:none}
-.bdg::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,6px) scale(.9);white-space:nowrap;background:#000;color:#fff;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:.25s;z-index:20}
-.bdg:hover::after,.bdg:focus::after,.bdg.tip::after{opacity:1;transform:translate(-50%,0) scale(1)}
+/* ---- Badge-ek (Discord stílus) ---- */
+.badges{display:flex;gap:6px;margin:2px 0 4px;position:relative;z-index:30}
+.bdg{position:relative;width:20px;height:20px;display:grid;place-items:center;color:#d8d8d8;cursor:default;outline:none;transition:color .25s,filter .25s}
+.bdg svg{width:18px;height:18px}
+.bdg:hover,.bdg:focus,.bdg.tip{color:#fff;filter:drop-shadow(0 0 6px rgba(255,255,255,.6))}
+.bdg::after{content:attr(data-tip);position:absolute;left:0;top:calc(100% + 8px);white-space:nowrap;background:#000;color:#fff;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
+.bdg:hover::after,.bdg:focus::after,.bdg.tip::after{opacity:1}
 
 /* ---- Extra animációk ---- */
 .card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:7;pointer-events:none;background:conic-gradient(from var(--a,0deg),transparent 0 70%,rgba(255,255,255,.55) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:bspin 6s linear infinite}
