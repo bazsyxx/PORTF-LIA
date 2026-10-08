@@ -130,7 +130,6 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
   #page{padding-top:64px}
 }
 
-/* ---- Badge-ek (Discord stílus) ---- */
 .badges{display:flex;gap:8px;margin:2px 0 4px 8px;position:relative;z-index:30}
 .bdg{position:relative;width:20px;height:20px;display:grid;place-items:center;color:#d8d8d8;cursor:default;outline:none;transition:color .25s,filter .25s}
 .bdg svg{width:18px;height:18px}
@@ -138,7 +137,6 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 .bdg::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);white-space:nowrap;background:#000;color:#fff;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
 .bdg:hover::after,.bdg:focus::after,.bdg.tip::after{opacity:1}
 
-/* ---- Extra animációk ---- */
 .card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:7;pointer-events:none;background:conic-gradient(from var(--a,0deg),transparent 0 70%,rgba(255,255,255,.55) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:bspin 6s linear infinite}
 @property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes bspin{to{--a:360deg}}
@@ -151,7 +149,6 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 @keyframes spk{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
 .socials a em{display:inline-block}
 
-/* ---- Telefon támogatás ---- */
 html,body{min-height:100dvh}
 #enter{padding:20px;text-align:center}
 @media(max-width:520px){
@@ -172,16 +169,9 @@ html,body{min-height:100dvh}
 .card{touch-action:pan-y}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
 
-/* ---- Unique extrák ---- */
-.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px;border:1px solid rgba(255,255,255,.4);border-radius:50%;z-index:70;pointer-events:none;opacity:0;transition:width .25s,height .25s,margin .25s,background .25s,opacity .3s}
-.cur.on{opacity:1}
-.cur.big{width:56px;height:56px;margin:-28px;background:rgba(255,255,255,.07)}
 #stars{position:fixed;inset:0;z-index:1;pointer-events:none}
 h1{position:relative;cursor:default}
 h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 @keyframes glt{0%{transform:translate(0)}25%{transform:translate(-2px,1px) skewX(-6deg)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,-1px) skewX(5deg)}100%{transform:none}}
 .box h2::after{content:"";display:block;height:1px;margin-top:8px;background:linear-gradient(90deg,rgba(255,255,255,.35),transparent);transform-origin:left;transform:scaleX(.25);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .box:hover h2::after{transform:scaleX(1)}
-.sp .cover{transition:transform .5s,box-shadow .5s}
-.box:hover .cover{transform:scale(1.05) rotate(-2deg);box-shadow:0 8px 28px rgba(255,255,255,.12)}
-@media(hover:none){.cur{display:none}}

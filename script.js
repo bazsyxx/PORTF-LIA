@@ -102,7 +102,6 @@ document.getElementById("enter").addEventListener("click",function(){
   setTimeout(showViews,1500);
 });
 
-/* ---- Óra (Europe/Budapest) ---- */
 (function(){
   const NS="http://www.w3.org/2000/svg",ticks=document.getElementById("ticks");
   for(let i=0;i<12;i++){const l=document.createElementNS(NS,"line"),big=i%3===0;
@@ -128,7 +127,6 @@ document.getElementById("enter").addEventListener("click",function(){
   tick();
 })();
 
-/* ---- Discord státusz (Lanyard, csak discord_status) ---- */
 (function(){
   const ID="688189917427269744",el=document.getElementById("status"),ok=["online","idle","dnd","offline"];
   const set=s=>{el.dataset.s=ok.includes(s)?s:"offline"};
@@ -154,13 +152,11 @@ document.getElementById("enter").addEventListener("click",function(){
   startPoll();connect();
 })();
 
-/* ---- Badge tooltip tap (mobil) ---- */
 document.querySelectorAll(".bdg").forEach(b=>{
   b.addEventListener("click",e=>{e.stopPropagation();const on=b.classList.contains("tip");document.querySelectorAll(".bdg").forEach(x=>x.classList.remove("tip"));if(!on){b.classList.add("tip");setTimeout(()=>b.classList.remove("tip"),2200)}});
 });
 addEventListener("click",()=>document.querySelectorAll(".bdg").forEach(x=>x.classList.remove("tip")));
 
-/* ---- Kattintás szikrák ---- */
 addEventListener("pointerdown",e=>{
   if(e.target.closest("#enter"))return;
   for(let i=0;i<7;i++){
@@ -171,17 +167,6 @@ addEventListener("pointerdown",e=>{
   }
 });
 
-/* ---- Kurzor gyűrű ---- */
-(function(){
-  if(matchMedia("(hover:none)").matches)return;
-  const c=document.createElement("div");c.className="cur";document.body.appendChild(c);
-  let tx=0,ty=0,x=0,y=0;
-  addEventListener("pointermove",e=>{tx=e.clientX;ty=e.clientY;c.classList.add("on");c.classList.toggle("big",!!e.target.closest("a,button,.bdg,#enter"))});
-  document.addEventListener("mouseleave",()=>c.classList.remove("on"));
-  (function f(){x+=(tx-x)*.18;y+=(ty-y)*.18;c.style.transform="translate("+x+"px,"+y+"px)";requestAnimationFrame(f)})();
-})();
-
-/* ---- Hullócsillagok ---- */
 (function(){
   const s=document.createElement("canvas");s.id="stars";document.body.appendChild(s);
   const g=s.getContext("2d");let w,h,list=[];
