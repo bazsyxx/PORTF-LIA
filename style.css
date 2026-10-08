@@ -129,3 +129,46 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
   .clockw .digi{display:flex;align-items:baseline;gap:10px}
   #page{padding-top:64px}
 }
+
+/* ---- Badge-ek ---- */
+.badges{display:flex;gap:7px;margin:4px 0 4px}
+.bdg{position:relative;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#ddd;cursor:default;outline:none;transition:.3s}
+.bdg svg{width:16px;height:16px;filter:drop-shadow(0 0 4px rgba(255,255,255,.35))}
+.bdg:hover,.bdg:focus,.bdg.tip{background:#fff;color:#000;transform:translateY(-3px) rotate(-4deg);box-shadow:0 6px 22px rgba(255,255,255,.22)}
+.bdg:hover svg,.bdg.tip svg{filter:none}
+.bdg::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,6px) scale(.9);white-space:nowrap;background:#000;color:#fff;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:.25s;z-index:20}
+.bdg:hover::after,.bdg:focus::after,.bdg.tip::after{opacity:1;transform:translate(-50%,0) scale(1)}
+
+/* ---- Extra animációk ---- */
+.card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:7;pointer-events:none;background:conic-gradient(from var(--a,0deg),transparent 0 70%,rgba(255,255,255,.55) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:bspin 6s linear infinite}
+@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes bspin{to{--a:360deg}}
+.banner::before{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.12) 50%,transparent 60%);transform:translateX(-120%);animation:sweep 7s 2s ease-in-out infinite}
+@keyframes sweep{to{transform:translateX(120%)}}
+.box,.socials a{position:relative;overflow:visible}
+.tag{animation:tagp 3s ease-in-out infinite}
+@keyframes tagp{50%{box-shadow:0 0 14px rgba(255,255,255,.18)}}
+.spark{position:fixed;z-index:60;width:4px;height:4px;margin:-2px;border-radius:50%;background:#fff;pointer-events:none;box-shadow:0 0 8px #fff;animation:spk .7s ease-out forwards}
+@keyframes spk{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
+.socials a em{display:inline-block}
+
+/* ---- Telefon támogatás ---- */
+html,body{min-height:100dvh}
+#enter{padding:20px;text-align:center}
+@media(max-width:520px){
+  #page{padding:64px 12px calc(20px + env(safe-area-inset-bottom))}
+  .enter-inner{gap:12px}
+  .enter-inner .txt{font-size:11px;letter-spacing:5px}
+  .enter-inner .line{width:36px}
+  .banner{height:120px}
+  h1{font-size:30px}
+  .box{padding:13px}
+  .dev{font-size:10px;letter-spacing:1.5px}
+  .grain{display:none}
+}
+@media(hover:none){
+  .card,.box:hover,.socials a:hover{transform:none}
+  .glow{display:none}
+}
+.card{touch-action:pan-y}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}

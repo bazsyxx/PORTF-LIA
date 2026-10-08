@@ -26,7 +26,7 @@ addEventListener("mousemove",e=>{
 });
 
 const card=document.getElementById("card");
-card.addEventListener("mousemove",e=>{
+card.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;
   const b=card.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top;
   card.style.setProperty("--mx",x+"px");card.style.setProperty("--my",y+"px");
   const rY=((x/b.width)-.5)*10,rX=-((y/b.height)-.5)*10;
@@ -47,7 +47,7 @@ more.addEventListener("click",()=>{
   more.firstChild.textContent=open?"Kevesebb":"Tovább olvasom";
 });
 
-const words=["yvxal • he/him","yvxal","Bazsyxx"];
+const words=["yvxal • he/him","yvxal • holy/moly","Bazsyxx • :3"];
 const out=document.getElementById("type");
 let wi=0,ci=0,del=false;
 function type(){
@@ -153,3 +153,20 @@ document.getElementById("enter").addEventListener("click",function(){
   }
   startPoll();connect();
 })();
+
+/* ---- Badge tooltip tap (mobil) ---- */
+document.querySelectorAll(".bdg").forEach(b=>{
+  b.addEventListener("click",e=>{e.stopPropagation();const on=b.classList.contains("tip");document.querySelectorAll(".bdg").forEach(x=>x.classList.remove("tip"));if(!on){b.classList.add("tip");setTimeout(()=>b.classList.remove("tip"),2200)}});
+});
+addEventListener("click",()=>document.querySelectorAll(".bdg").forEach(x=>x.classList.remove("tip")));
+
+/* ---- Kattintás szikrák ---- */
+addEventListener("pointerdown",e=>{
+  if(e.target.closest("#enter"))return;
+  for(let i=0;i<7;i++){
+    const s=document.createElement("i"),a=Math.random()*6.283,d=18+Math.random()*26;
+    s.className="spark";s.style.left=e.clientX+"px";s.style.top=e.clientY+"px";
+    s.style.setProperty("--dx",Math.cos(a)*d+"px");s.style.setProperty("--dy",Math.sin(a)*d+"px");
+    document.body.appendChild(s);setTimeout(()=>s.remove(),700);
+  }
+});
