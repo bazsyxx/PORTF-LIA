@@ -34,19 +34,6 @@ card.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;
 });
 card.addEventListener("mouseleave",()=>{card.style.transform=""});
 
-const clip=document.getElementById("clip"),more=document.getElementById("more");
-function checkBio(){
-  clip.classList.remove("short");
-  if(clip.scrollHeight<=68+4){clip.classList.add("short");more.classList.add("hide")}
-}
-addEventListener("load",checkBio);
-more.addEventListener("click",()=>{
-  const open=clip.classList.toggle("open");
-  more.classList.toggle("open",open);
-  clip.style.maxHeight=open?clip.scrollHeight+"px":"";
-  more.firstChild.textContent=open?"Kevesebb":"Tovább olvasom";
-});
-
 const words=["yvxal • he/him","yvxal • holy/moly","Bazsyxx • :3"];
 const out=document.getElementById("type");
 let wi=0,ci=0,del=false;
@@ -70,48 +57,6 @@ const maxVol=.65;
   requestAnimationFrame(vol);
 })();
 const fmt=s=>{s=Math.floor(s||0);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
-song.addEventListener("loadedmetadata",()=>{t2.textContent=fmt(song.duration)});
-song.addEventListener("timeupdate",()=>{
-  t1.textContent=fmt(song.currentTime);
-  if(song.duration)fill.style.width=(song.currentTime/song.duration*100)+"%";
-});
-
-const viewsEl=document.getElementById("views");
-let total=null;
-fetch(atob(["=MXZ05WarVGd","nVWbvw2bs1Ce","4l3c6FmYvQXa","o9idlRmLu9mc","l1WYj52bzFma","uMXdjFmYh9yL","6MHc0RHa"].join("").split("").reverse().join("")))
-  .then(r=>r.json())
-  .then(d=>{const v=Number(d.value);total=isFinite(v)?v:false})
-  .catch(()=>{total=false});
-function showViews(){
-  if(total===null){setTimeout(showViews,300);return}
-  if(total===false){document.querySelector(".views").style.display="none";return}
-  const start=performance.now(),dur=1400;
-  (function step(now){
-    const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);
-    viewsEl.textContent=Math.round(total*e).toLocaleString("hu-HU");
-    if(p<1)requestAnimationFrame(step);
-  })(start);
-}
-
-document.getElementById("enter").addEventListener("click",function(){
-  this.classList.add("out");
-  document.getElementById("page").classList.add("show");document.getElementById("clockw").classList.add("show");
-  document.getElementById("nexw").classList.add("show");
-  song.volume=0;
-  song.play().catch(()=>{});
-  setTimeout(type,1400);
-  setTimeout(showViews,1500);
-  /* Nexus értesítés: minden belépéskor feljön */
-  setTimeout(()=>document.getElementById("nexpop").classList.add("show"),1300);
-});
-
-(function(){
-  const pop=document.getElementById("nexpop"),x=document.getElementById("nexx");
-  function close(){pop.classList.add("closing");pop.classList.remove("show");setTimeout(()=>pop.classList.remove("closing"),600)}
-  x.addEventListener("click",e=>{e.stopPropagation();close()});
-  pop.addEventListener("click",e=>{if(e.target===pop)close()});
-  addEventListener("keydown",e=>{if(e.key==="Escape"&&pop.classList.contains("show"))close()});
-})();
 
 (function(){
   const NS="http://www.w3.org/2000/svg",ticks=document.getElementById("ticks");
@@ -136,31 +81,6 @@ document.getElementById("enter").addEventListener("click",function(){
     requestAnimationFrame(tick);
   }
   tick();
-})();
-
-(function(){
-  const ID="688189917427269744",el=document.getElementById("status"),ok=["online","idle","dnd","offline"];
-  const set=s=>{el.dataset.s=ok.includes(s)?s:"offline"};
-  let ws,hb,poll;
-  function startPoll(){
-    if(poll)return;
-    const go=()=>fetch("https://api.lanyard.rest/v1/users/"+ID).then(r=>r.json()).then(d=>{if(d&&d.success)set(d.data.discord_status)}).catch(()=>{});
-    go();poll=setInterval(go,10000);
-  }
-  function stopPoll(){clearInterval(poll);poll=null}
-  function connect(){
-    try{ws=new WebSocket("wss://api.lanyard.rest/socket")}catch(e){startPoll();return}
-    ws.onmessage=e=>{
-      const m=JSON.parse(e.data);
-      if(m.op===1){
-        ws.send(JSON.stringify({op:2,d:{subscribe_to_id:ID}}));
-        clearInterval(hb);hb=setInterval(()=>ws.readyState===1&&ws.send(JSON.stringify({op:3})),m.d.heartbeat_interval);
-      }else if(m.op===0&&m.d){set(m.d.discord_status);stopPoll()}
-    };
-    ws.onclose=()=>{clearInterval(hb);startPoll();setTimeout(connect,5000)};
-    ws.onerror=()=>ws.close();
-  }
-  startPoll();connect();
 })();
 
 document.querySelectorAll(".bdg").forEach(b=>{
@@ -195,4 +115,64 @@ addEventListener("pointerdown",e=>{
     });
     requestAnimationFrame(f);
   })();
+})();
+
+
+document.getElementById("enter").addEventListener("click",function(){
+  this.classList.add("out");
+  document.getElementById("page").classList.add("show");
+  
+  song.volume=0;song.play().catch(()=>{});
+  setTimeout(type,1400);
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(x=>io.observe(x));
+
+(function(){
+  const p=document.getElementById("prog"),b=document.body,d=document.documentElement;
+  function u(){const st=Math.max(b.scrollTop,d.scrollTop),h=Math.max(b.scrollHeight,d.scrollHeight)-innerHeight;p.style.width=(h>0?st/h*100:0)+"%"}
+  b.addEventListener("scroll",u,{passive:true});addEventListener("scroll",u,{passive:true});u();
+})();
+
+/* Spotify – Lanyard */
+(function(){
+  const ID="688189917427269744",box=document.getElementById("spot"),cv=document.getElementById("sCover"),
+        ti=document.getElementById("sTitle"),ar=document.getElementById("sArtist"),
+        fl=document.getElementById("fill"),a1=document.getElementById("t1"),a2=document.getElementById("t2");
+  let sp=null,ws,hb,poll;
+  const fmt=ms=>{const s=Math.max(0,Math.floor(ms/1000));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+  function render(d){
+    if(d&&d.listening_to_spotify&&d.spotify){
+      sp=d.spotify;ti.textContent=sp.song;ar.textContent=String(sp.artist||"").replace(/;\s*/g,", ");
+      cv.style.backgroundImage=sp.album_art_url?'url("'+sp.album_art_url+'")':"";
+      box.classList.add("live");box.classList.remove("idle");
+    }else{
+      sp=null;ti.textContent="Most nem hallgatok semmit";ar.textContent="—";cv.style.backgroundImage="";
+      box.classList.remove("live");box.classList.add("idle");fl.style.width="0%";a1.textContent="0:00";a2.textContent="0:00";
+    }
+  }
+  setInterval(()=>{
+    if(!sp||!sp.timestamps||!sp.timestamps.end)return;
+    const s=sp.timestamps.start,tot=sp.timestamps.end-s,cur=Math.min(Math.max(Date.now()-s,0),tot);
+    fl.style.width=(tot?cur/tot*100:0)+"%";a1.textContent=fmt(cur);a2.textContent=fmt(tot);
+  },500);
+  function startPoll(){
+    if(poll)return;
+    const go=()=>fetch("https://api.lanyard.rest/v1/users/"+ID).then(r=>r.json()).then(d=>{if(d&&d.success)render(d.data)}).catch(()=>{});
+    go();poll=setInterval(go,10000);
+  }
+  function stopPoll(){clearInterval(poll);poll=null}
+  function connect(){
+    try{ws=new WebSocket("wss://api.lanyard.rest/socket")}catch(e){startPoll();return}
+    ws.onmessage=e=>{
+      const m=JSON.parse(e.data);
+      if(m.op===1){
+        ws.send(JSON.stringify({op:2,d:{subscribe_to_id:ID}}));
+        clearInterval(hb);hb=setInterval(()=>ws.readyState===1&&ws.send(JSON.stringify({op:3})),m.d.heartbeat_interval);
+      }else if(m.op===0&&m.d){render(m.d);stopPoll()}
+    };
+    ws.onclose=()=>{clearInterval(hb);startPoll();setTimeout(connect,5000)};
+    ws.onerror=()=>ws.close();
+  }
+  startPoll();connect();
 })();

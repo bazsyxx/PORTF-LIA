@@ -11,126 +11,61 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="prog"></div>
 <canvas id="bg"></canvas>
-<div class="glow"></div>
-<div class="grain"></div>
-<div class="vig"></div>
+<div class="glow"></div><div class="grain"></div><div class="vig"></div>
 
 <div id="enter">
-  <div class="enter-inner">
-    <span class="line"></span>
-    <span class="txt">Kattints a belépéshez</span>
-    <span class="line"></span>
-  </div>
+  <div class="enter-inner"><span class="line"></span><span class="txt">Kattints a belépéshez</span><span class="line"></span></div>
   <div class="dev"><b></b>Az oldal fejlesztés alatt áll</div>
 </div>
 
-<main id="page">
-  <section class="card" id="card">
+<main id="page"><div class="col">
+<section class="card" id="card">
     <div class="shine"></div>
     <div class="banner"><div class="banner-img"></div></div>
-
-    <div class="top">
-      <div class="avatar-wrap r" style="--d:.15s">
-        <div class="ring"></div>
-        <div class="avatar"></div>
-        <span class="status" id="status" data-s="offline"></span>
-      </div>
-    </div>
-
+    <div class="top"><div class="avatar-wrap r" style="--d:.15s"><div class="ring"></div><div class="avatar"></div></div></div>
     <div class="body">
-      <div class="namerow r" style="--d:.25s">
-        <h1>Bazsyxx</h1>
-        <span class="tag">
-          <svg viewBox="0 0 24 24" width="14" height="14"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#9a9a9a"/></linearGradient></defs><path d="M13.5 1 4 13.5h6.2L9 23l10-13.2h-6.4z" fill="url(#g)"/></svg>
-          LEAK
-        </span>
-      </div>
+      <div class="namerow r" style="--d:.25s"><h1>Bazsyxx</h1><span class="tag"><svg viewBox="0 0 24 24" width="14" height="14"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#9a9a9a"/></linearGradient></defs><path d="M13.5 1 4 13.5h6.2L9 23l10-13.2h-6.4z" fill="url(#g)"/></svg> UNS</span></div>
       <p class="sub r" style="--d:.35s"><span id="type"></span><b class="caret"></b></p>
-
-      
       <div class="badges r" style="--d:.4s">
-        <span class="bdg" tabindex="0" data-tip="Webtulaj"><svg viewBox="0 0 24 24"><path d="M12 2 3 6v6c0 5 3.8 8.7 9 10 5.2-1.3 9-5 9-10V6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="bdg" tabindex="0" data-tip="Staff"><svg viewBox="0 0 24 24"><path d="M12 2.5 14.6 8l6 .8-4.4 4.1 1.1 5.9L12 15.9l-5.3 2.9 1.1-5.9L3.4 8.8l6-.8z" fill="currentColor"/></svg></span>
-        <span class="bdg" tabindex="0" data-tip="Antiszoc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 14.5c1 1.4 2.4 2 4 2s3-.6 4-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="10" r="1.2" fill="currentColor"/><circle cx="15" cy="10" r="1.2" fill="currentColor"/></svg></span>
-        <span class="bdg" tabindex="0" data-tip="OG"><svg viewBox="0 0 24 24"><path d="M12 3 21 10l-9 11L3 10z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 10h18M9 10l3 11 3-11M9 10l3-7 3 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span class="bdg" tabindex="0" data-tip="Cigány"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="16.5" cy="16" r="2.5" fill="currentColor"/></svg></span>
-        <span class="bdg" tabindex="0" data-tip="6 év"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13v3.5l2 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="bdg" tabindex="0" data-tip="Zenefüggő"><svg viewBox="0 0 24 24"><path d="M9 18V6l10-2v12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="currentColor"/><circle cx="16.5" cy="16" r="2.5" fill="currentColor"/></svg></span>
+        <span class="bdg" tabindex="0" data-tip="Gamer"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 10.5v4M5 12.5h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="15.5" cy="11.5" r="1.1" fill="currentColor"/><circle cx="18" cy="13.5" r="1.1" fill="currentColor"/></svg></span>
+        <span class="bdg" tabindex="0" data-tip="Dumagép"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <span class="bdg" tabindex="0" data-tip="Antiszoc"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 15c1-1.4 2.4-2 4-2s3 .6 4 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="10" r="1.2" fill="currentColor"/><circle cx="15" cy="10" r="1.2" fill="currentColor"/></svg></span>
       </div>
-
-      <div class="box r" style="--d:.5s">
-        <h2>Rólam</h2>
-        <div class="clip" id="clip"><p>Helobeloka, Balázs a becses nevem, de a haverok Bazsinak vagy Bazsolettnek hívnak. 18 éves vagyok, szeretek zenét hallgatni, dumálgatni, irl is jól elvagyok random emberekkel, csak kicsit antiszoc vagyok NAMIND1. Játszani is szoktam akarmivel ami nem szar HEHHE. Ha van kedved dumalni, lehet privátban DCcn írni :P</p></div>
-        <button class="more" id="more" type="button"><span>Tovább olvasom</span><i>▾</i></button>
-      </div>
-
-      <div class="box spot r" style="--d:.65s">
-        <h2 class="lis">Hallgatja: Spotify <svg viewBox="0 0 24 24" width="14" height="14"><circle cx="12" cy="12" r="12" fill="currentColor"/><path d="M5.5 9c4.2-1.2 8.8-.9 13 1.3M6.3 12.5c3.5-1 7.3-.7 10.7 1.1M7.2 15.7c2.8-.8 5.7-.5 8.4.9" stroke="#0a0a0a" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></h2>
-        <div class="sp">
-          <div class="cover"></div>
-          <div class="info">
-            <b>Run It! (feat. Juelz Santana)</b>
-            <span>Chris Brown, Juelz Santana</span>
-            <div class="prog"><em id="t1">0:00</em><div class="bar"><i id="fill"></i></div><em id="t2">0:00</em></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="socials r" style="--d:.8s">
-        <a href="https://discord.com/users/688189917427269744" target="_blank" rel="noopener">Discord<em>↗</em></a>
-        <a href="/flappy" class="game">Flappy Gpsy<em>→</em></a>
-      </div>
-
-      <div class="views r" style="--d:.95s">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-        <span id="views">0</span>
-      </div>
+      <div class="duo"><div class="box r" style="--d:.5s"><h2>Rólam</h2><p>Helobeloka, Balázs a becses nevem, de a haverok Bazsinak vagy Bazsolettnek hívnak. 18 éves vagyok, szeretek zenét hallgatni, dumálgatni, irl is jól elvagyok random emberekkel, csak kicsit antiszoc vagyok NAMIND1. Játszani is szoktam akármivel, ami nem szar HEHHE. Ha van kedved dumálni, lehet privátban DC-n írni :P</p></div>
+      <div class="duocol"><div class="box spot r idle" id="spot" style="--d:.65s"><h2>Épp ezt hallgatom</h2>
+        <div class="sp"><div class="cover" id="sCover"></div><div class="info"><b id="sTitle">Betöltés…</b><span id="sArtist">—</span>
+        <div class="prog"><em id="t1">0:00</em><div class="bar"><i id="fill"></i></div><em id="t2">0:00</em></div></div></div></div><div class="box clk mini r" style="--d:.8s"><div class="clockrow"><svg class="analog" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="47" class="face"/><g id="ticks"></g>
+  <line id="hh" x1="50" y1="50" x2="50" y2="28" class="hand h"/><line id="mh" x1="50" y1="50" x2="50" y2="17" class="hand m"/><line id="sh" x1="50" y1="56" x2="50" y2="12" class="hand s"/><circle cx="50" cy="50" r="2.6" fill="#fff"/></svg><div class="digi"><div class="time"><span id="hm">00:00</span><small id="ss">00</small></div><div class="date" id="date"></div><div class="tz">Europe/Budapest</div></div></div></div></div></div>
     </div>
   </section>
-</main>
-
-<aside class="clockw" id="clockw">
-      <div class="box clk">
-        <h2>Idő • Magyarország</h2>
-        <div class="clockrow">
-          <svg class="analog" viewBox="0 0 100 100" aria-hidden="true">
-            <circle cx="50" cy="50" r="47" class="face"/>
-            <g id="ticks"></g>
-            <line id="hh" x1="50" y1="50" x2="50" y2="28" class="hand h"/>
-            <line id="mh" x1="50" y1="50" x2="50" y2="17" class="hand m"/>
-            <line id="sh" x1="50" y1="56" x2="50" y2="12" class="hand s"/>
-            <circle cx="50" cy="50" r="2.6" fill="#fff"/>
-          </svg>
-          <div class="digi">
-            <div class="time"><span id="hm">00:00</span><small id="ss">00</small></div>
-            <div class="date" id="date"></div>
-            <div class="tz">Europe/Budapest</div>
-          </div>
-        </div>
-      </div>
-</aside>
-
-<!-- Nexus bot: oldalon lévő doboz -->
-<aside class="nexw" id="nexw">
-  <div class="box">
-    <h2>Nexus bot</h2>
-    <p>Nexus(HU) Discord bot, hamarosan release. Hívd be a szerveredre, és automatikusan résztvehetsz a nitro nyereményjátékba! MWAH</p>
-    <a class="nexbtn small" href="https://discord.com/oauth2/authorize?client_id=1561790527802839200&amp;permissions=8&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg><span>Nexus bot behívása</span></a>
-  </div>
-</aside>
-
-<!-- Nexus bot: teljes képernyős értesítés -->
-<div id="nexpop" class="nexpop" role="dialog" aria-modal="true" aria-labelledby="nexT">
-  <div class="nexcard">
-    <button class="nexx" id="nexx" type="button" aria-label="Bezárás">✕</button>
-    <div class="nexlogo"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg></div>
-    <span class="nexbadge">ÚJ PROJEKT</span>
-    <h3 id="nexT">Nexus</h3>
-    <p>A legújabb projektem egy <b>magyar discord bot</b>, amely <b>Nexus</b> nevecskére hallgat. Hamarosan kiadjuk a kis 4 fős Nexus teamecskével.</p>
-    <p class="nexgift">Amelyik szerverre be lesz hívva a bot, <b>automatikusan csatlakozik egy nyereményjátékba</b>: 1 hónap Nitro, teljesen kvalitás. (Szerver tulajdonos döntése hogy mire használja a nyereményt.)</p>
-    <a class="nexbtn" href="https://discord.com/oauth2/authorize?client_id=1561790527802839200&amp;permissions=8&amp;integration_type=0&amp;scope=bot+applications.commands" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg><span>Hívd be a botot</span></a>
-  </div>
+<div class="cells">
+<div class="box rv rv-l now" data-n="01"><h2>Mostanában</h2>
+<div class="row"><span class="dot"></span><div><small>Hol</small><b>Debrecen</b> · Hajdú-Bihar</div></div>
+<div class="row"><span class="dot"></span><div><small>Játszom</small><b>Minecraft</b> · <b>Euro Truck Simulator 2</b></div></div>
+<div class="row"><span class="dot"></span><div><small>Hallgatom</small><b>Mario</b> · <b>RZMVS</b> · <b>Rini</b> · <b>Csaknekedkislany</b></div></div></div>
+<div class="box rv rv-r code" data-n="02"><div class="tb"><i></i><i></i><i></i><span>nyelvek.js</span></div>
+<pre><span class="c">// ezekben a nyelvekben</span>
+<span class="c">// szoktam programozni</span>
+<span class="k">const</span> nyelvek = [
+  <span class="s">"JavaScript"</span>,
+  <span class="s">"Golang"</span>,
+  <span class="s">"Python"</span>,
+  <span class="s">"Rust"</span>,
+  <span class="s">"HTML-CSS"</span>
+];</pre></div>
+<div class="box rv rv-z music" data-n="03"><h2>Zene</h2><div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="strip"><div class="track"><span>Caramel</span><em>(Molnár Ferenc)</em><b>✦</b><span>RZMVS</span><b>✦</b><span>Mario</span><b>✦</b><span>Rini</span><b>✦</b><span>Marics Peti</span><b>✦</b><span>The Weeknd</span><b>✦</b><span>G.w.M</span><b>✦</b><span>VZS</span><b>✦</b><span>Young G</span><b>✦</b><span>Mehringer</span><b>✦</b><span>Bogi</span><b>✦</b><span>Caramel</span><em>(Molnár Ferenc)</em><b>✦</b><span>RZMVS</span><b>✦</b><span>Mario</span><b>✦</b><span>Rini</span><b>✦</b><span>Marics Peti</span><b>✦</b><span>The Weeknd</span><b>✦</b><span>G.w.M</span><b>✦</b><span>VZS</span><b>✦</b><span>Young G</span><b>✦</b><span>Mehringer</span><b>✦</b><span>Bogi</span><b>✦</b></div></div><p class="mini">Ezeket hallgatom a legszívesebben.</p></div>
+<div class="box rv rv-l games" data-n="04"><h2>Játékok</h2><div class="stick"><span style="--r:-3deg">Minecraft</span><span style="--r:2deg">Euro Truck Simulator 2</span><span style="--r:-1.5deg">Sakk (Chess)</span><span style="--r:3deg">Phasmophobia</span><span style="--r:-2deg">Counter Strike 2</span></div></div>
+<div class="box rv rv-r ppl2" data-n="05"><h2>Kedvenc embereim</h2><div class="avs"><i style="--z:5">L</i><i style="--z:4">M</i><i style="--z:3">G</i><i style="--z:2">B</i><i style="--z:1">C</i></div>
+<p class="ppl"><span class="luc">Lucam <i>♥</i></span> <small>(always my first)</small>, Mocsok Lejla, Gyuriss, Bigmac (Danielke) és Csakim.</p></div>
+<div class="box rv rv-z nope"><h2>Nem bírom</h2><p><s>Anime</s> – már nem szeretem, aki beszél róla, azt kicsit irritál.</p></div>
+<div class="socials rv rv-l box dcl"><a href="https://discord.com/users/688189917427269744" target="_blank" rel="noopener">Dumálnál? Írj privátban<em>↗</em></a></div>
 </div>
+<p class="foot">made by bazsyxx · 2026</p>
+</div></main>
 
 <audio id="song" src="assets/runit.mp3" loop preload="auto"></audio>
 <script src="script.js"></script>
