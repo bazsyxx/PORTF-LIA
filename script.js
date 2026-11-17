@@ -18,13 +18,11 @@ function draw(){
   requestAnimationFrame(draw);
 }
 draw();
-
 const glow=document.querySelector(".glow");
 addEventListener("mousemove",e=>{
   mouse.x=e.clientX;mouse.y=e.clientY;
   glow.style.setProperty("--gx",e.clientX+"px");glow.style.setProperty("--gy",e.clientY+"px");
 });
-
 const card=document.getElementById("card");
 card.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;
   const b=card.getBoundingClientRect(),x=e.clientX-b.left,y=e.clientY-b.top;
@@ -33,7 +31,6 @@ card.addEventListener("pointermove",e=>{if(e.pointerType!=="mouse")return;
   card.style.transform="rotateX("+rX+"deg) rotateY("+rY+"deg)";
 });
 card.addEventListener("mouseleave",()=>{card.style.transform=""});
-
 const words=["yvxal • he/him","yvxal • holy/moly","Bazsyxx • :3"];
 const out=document.getElementById("type");
 let wi=0,ci=0,del=false;
@@ -45,7 +42,6 @@ function type(){
   else if(ci>0){ci--;setTimeout(type,55)}
   else{del=false;wi=(wi+1)%words.length;setTimeout(type,400)}
 }
-
 const song=document.getElementById("song"),fill=document.getElementById("fill"),t1=document.getElementById("t1"),t2=document.getElementById("t2");
 const maxVol=.65;
 (function vol(){
@@ -57,7 +53,6 @@ const maxVol=.65;
   requestAnimationFrame(vol);
 })();
 const fmt=s=>{s=Math.floor(s||0);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
-
 (function(){
   const NS="http://www.w3.org/2000/svg",ticks=document.getElementById("ticks");
   for(let i=0;i<12;i++){const l=document.createElementNS(NS,"line"),big=i%3===0;
@@ -82,12 +77,10 @@ const fmt=s=>{s=Math.floor(s||0);return Math.floor(s/60)+":"+String(s%60).padSta
   }
   tick();
 })();
-
 document.querySelectorAll(".bdg").forEach(b=>{
   b.addEventListener("click",e=>{e.stopPropagation();const on=b.classList.contains("tip");document.querySelectorAll(".bdg").forEach(x=>x.classList.remove("tip"));if(!on){b.classList.add("tip");setTimeout(()=>b.classList.remove("tip"),2200)}});
 });
 addEventListener("click",()=>document.querySelectorAll(".bdg").forEach(x=>x.classList.remove("tip")));
-
 addEventListener("pointerdown",e=>{
   if(e.target.closest("#enter"))return;
   for(let i=0;i<7;i++){
@@ -97,7 +90,6 @@ addEventListener("pointerdown",e=>{
     document.body.appendChild(s);setTimeout(()=>s.remove(),700);
   }
 });
-
 (function(){
   const s=document.createElement("canvas");s.id="stars";document.body.appendChild(s);
   const g=s.getContext("2d");let w,h,list=[];
@@ -116,25 +108,19 @@ addEventListener("pointerdown",e=>{
     requestAnimationFrame(f);
   })();
 })();
-
-
 document.getElementById("enter").addEventListener("click",function(){
   this.classList.add("out");
   document.getElementById("page").classList.add("show");
-  
   song.volume=0;song.play().catch(()=>{});
   setTimeout(type,1400);
 });
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll(".rv").forEach(x=>io.observe(x));
-
 (function(){
   const p=document.getElementById("prog"),b=document.body,d=document.documentElement;
   function u(){const st=Math.max(b.scrollTop,d.scrollTop),h=Math.max(b.scrollHeight,d.scrollHeight)-innerHeight;p.style.width=(h>0?st/h*100:0)+"%"}
   b.addEventListener("scroll",u,{passive:true});addEventListener("scroll",u,{passive:true});u();
 })();
-
-/* Spotify – Lanyard */
 (function(){
   const ID="688189917427269744",box=document.getElementById("spot"),cv=document.getElementById("sCover"),
         ti=document.getElementById("sTitle"),ar=document.getElementById("sArtist"),

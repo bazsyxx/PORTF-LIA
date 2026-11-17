@@ -7,7 +7,6 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,Ari
 .grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");animation:grain 1s steps(6) infinite}
 @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
 .vig{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.85) 100%)}
-
 #enter{position:fixed;inset:0;z-index:50;background:#000;display:flex;flex-direction:column;gap:26px;align-items:center;justify-content:center;transition:opacity 1s,filter 1s,transform 1s}
 #enter.out{opacity:0;filter:blur(18px);transform:scale(1.15);pointer-events:none}
 .dev{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#777;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);padding:7px 14px;border-radius:999px;animation:spacein 1.6s .4s both}
@@ -19,7 +18,6 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,Ari
 @keyframes spacein{from{letter-spacing:30px;opacity:0;filter:blur(8px)}}
 @keyframes grow{from{width:0}}
 @keyframes flick{0%,100%{opacity:1}45%{opacity:.4}50%{opacity:1}55%{opacity:.6}}
-
 #page{position:relative;z-index:10;width:100%;min-height:100%;align-items:center;padding:20px;display:flex;justify-content:center;perspective:1100px;opacity:0;pointer-events:none}
 #page.show{opacity:1;pointer-events:auto}
 .card{position:relative;width:100%;max-width:400px;background:var(--card);backdrop-filter:blur(22px) saturate(1.2);-webkit-backdrop-filter:blur(22px) saturate(1.2);border:1px solid var(--line);border-radius:20px;overflow:hidden;transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .4s;box-shadow:0 30px 90px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.02);opacity:0;transform:translateY(40px) scale(.94);filter:blur(10px)}
@@ -28,24 +26,20 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,Ari
 .card:hover{box-shadow:0 40px 110px rgba(0,0,0,.9),0 0 60px rgba(255,255,255,.05)}
 .shine{position:absolute;inset:0;z-index:5;pointer-events:none;background:radial-gradient(320px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.10),transparent 60%);opacity:0;transition:opacity .3s}
 .card:hover .shine{opacity:1}
-
 .banner{height:140px;overflow:hidden;position:relative;background:#161616}
 .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(14,14,14,.95))}
 .banner-img{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a,#2c2c2c,#111) center/cover;background-image:url("https://dcdn.dstn.to/banners/688189917427269744"),url("assets/banner.png"),linear-gradient(135deg,#1a1a1a,#2c2c2c,#111);animation:kb 18s ease-in-out infinite alternate}
 @keyframes kb{from{transform:scale(1)}to{transform:scale(1.12) translate(-2%,-2%)}}
-
 .top{position:relative;z-index:6}
 .avatar-wrap{position:relative;width:100px;height:100px;margin:-52px 0 0 20px}
 .ring{position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(from 0deg,#fff,#2a2a2a,#8a8a8a,#0a0a0a,#fff);animation:spin 5s linear infinite}
 .avatar{position:absolute;inset:0;border-radius:50%;background:#262626 center/cover no-repeat;background-image:url("https://dcdn.dstn.to/avatars/688189917427269744"),url("assets/pfp.gif");border:5px solid #090909;transition:transform .4s}
 .avatar-wrap:hover .avatar{transform:scale(1.06) rotate(-3deg)}
 @keyframes spin{to{transform:rotate(360deg)}}
-
 .body{padding:12px 22px 24px;position:relative;z-index:6}
 .r{opacity:0;transform:translateY(18px);filter:blur(6px)}
 #page.show .r{animation:rin .8s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--d) + .6s)}
 @keyframes rin{to{opacity:1;transform:none;filter:none}}
-
 .namerow{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
 h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;font-weight:800;letter-spacing:1px;line-height:1;background:linear-gradient(110deg,#8a8a8a 20%,#fff 40%,#fff 60%,#8a8a8a 80%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 4s linear infinite}
 @keyframes shim{to{background-position:-250% 0}}
@@ -56,8 +50,6 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 .sub{color:var(--mute);font-size:14px;margin:8px 0 6px;min-height:20px}
 .caret{display:inline-block;width:1px;height:14px;background:#aaa;margin-left:2px;vertical-align:middle;animation:blink 1s steps(2) infinite}
 @keyframes blink{50%{opacity:0}}
-
-
 .box{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:14px;padding:15px;margin-top:12px;transition:border-color .3s,transform .3s}
 .box:hover{border-color:rgba(255,255,255,.22);transform:translateY(-2px)}
 .lis{display:flex;align-items:center;gap:7px}
@@ -93,7 +85,6 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 .date{font-size:13px;color:#ccc;margin-top:8px;text-transform:capitalize}
 .tz{font-size:11px;color:var(--mute);letter-spacing:1.5px;margin-top:4px;text-transform:uppercase}
 @media(max-width:420px){.card{border-radius:16px}}
-
 .socials a+a{margin-top:8px}
 .clockw{position:fixed;top:24px;right:24px;z-index:10;width:300px;opacity:0;transition:opacity 1s .9s;pointer-events:none}
 .clockw.show{opacity:1;pointer-events:auto}
@@ -109,14 +100,12 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
   .clockw .digi{display:flex;align-items:baseline;gap:10px}
   #page{padding-top:64px}
 }
-
 .badges{display:flex;gap:8px;margin:2px 0 4px 8px;position:relative;z-index:30}
 .bdg{position:relative;width:20px;height:20px;display:grid;place-items:center;color:#d8d8d8;cursor:default;outline:none;transition:color .25s,filter .25s}
 .bdg svg{width:18px;height:18px}
 .bdg:hover,.bdg:focus,.bdg.tip{color:#fff;filter:drop-shadow(0 0 6px rgba(255,255,255,.6))}
 .bdg::after{content:attr(data-tip);position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + 8px);white-space:nowrap;background:#000;color:#fff;border:1px solid rgba(255,255,255,.2);font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:40}
 .bdg:hover::after,.bdg:focus::after,.bdg.tip::after{opacity:1}
-
 .card::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:7;pointer-events:none;background:conic-gradient(from var(--a,0deg),transparent 0 70%,rgba(255,255,255,.55) 85%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:bspin 6s linear infinite}
 @property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes bspin{to{--a:360deg}}
@@ -128,7 +117,6 @@ h1{font-family:"Grenze Gotisch","UnifrakturCook",Georgia,serif;font-size:34px;fo
 .spark{position:fixed;z-index:60;width:4px;height:4px;margin:-2px;border-radius:50%;background:#fff;pointer-events:none;box-shadow:0 0 8px #fff;animation:spk .7s ease-out forwards}
 @keyframes spk{to{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
 .socials a em{display:inline-block}
-
 html,body{min-height:100dvh}
 #enter{padding:20px;text-align:center}
 @media(max-width:520px){
@@ -148,16 +136,12 @@ html,body{min-height:100dvh}
 }
 .card{touch-action:pan-y}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01s!important;animation-iteration-count:1!important}}
-
 #stars{position:fixed;inset:0;z-index:1;pointer-events:none}
 h1{position:relative;cursor:default}
 h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 @keyframes glt{0%{transform:translate(0)}25%{transform:translate(-2px,1px) skewX(-6deg)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,-1px) skewX(5deg)}100%{transform:none}}
 .box h2::after{content:"";display:block;height:1px;margin-top:8px;background:linear-gradient(90deg,rgba(255,255,255,.35),transparent);transform-origin:left;transform:scaleX(.25);transition:transform .6s cubic-bezier(.2,.8,.2,1)}
 .box:hover h2::after{transform:scaleX(1)}
-
-
-/* ===== új portfólió ===== */
 #page{align-items:flex-start;padding-top:40px}
 .col{width:100%;max-width:540px;padding-bottom:50px}
 .card{max-width:none}
@@ -185,8 +169,6 @@ h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 @keyframes mq{to{transform:translateX(-50%)}}
 .foot{text-align:center;color:#555;font-size:12px;letter-spacing:2px;margin-top:26px;text-transform:uppercase}
 @media(max-width:520px){.favs{grid-template-columns:1fr}.stat{grid-template-columns:82px 1fr 34px}}
-
-/* ===== széles elrendezés ===== */
 .col{max-width:1240px}
 .layout{display:grid;grid-template-columns:380px 1fr;gap:22px;align-items:start}
 .layout>.card{position:sticky;top:20px}
@@ -195,11 +177,8 @@ h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 .cell+.cell{margin-top:0}
 .right .mq{margin-top:22px}
 .right .socials{margin-top:14px}
-
 @media(max-width:1000px){.layout{grid-template-columns:1fr;max-width:540px;margin:0 auto}.layout>.card{position:relative;top:0}.cells{grid-template-columns:1fr}}
 @media(min-width:601px) and (max-width:1000px){.layout{max-width:760px}.cells{grid-template-columns:1fr 1fr}}
-
-/* ===== v3: egyszerűbb, középre zárt ===== */
 .col{max-width:900px}
 .layout,.right,.cells{display:block}
 .duo{display:grid;grid-template-columns:1.3fr 1fr;gap:12px;margin-top:12px}
@@ -213,8 +192,6 @@ h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 .col .card{position:relative;top:0}
 .body{padding:12px 26px 26px}
 @media(max-width:820px){.trio,.duo,.duo2{grid-template-columns:1fr}}
-
-/* ===== v4: középre igazítva ===== */
 #page{padding-right:20px}
 .col{margin:0 auto}
 .cells{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
@@ -231,16 +208,12 @@ h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 .hl h2{text-align:center}
 .cells .socials a{height:100%;min-height:62px}
 @media(max-width:700px){.cells{grid-template-columns:1fr}}
-
-/* v5: finomabb kiemelés */
 .hl{text-align:left;box-shadow:none;border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.05)}
 .hl h2{text-align:left}
 .lucam{font-family:inherit;font-size:24px;font-weight:700;line-height:1.3;background:none;-webkit-background-clip:initial;background-clip:initial;color:#fff;animation:none;filter:none;text-shadow:0 0 14px rgba(255,255,255,.3)}
 .lucam.two{font-size:19px;font-weight:600;color:#ddd;text-shadow:none;margin-top:2px}
 .alw{display:inline;margin:0 0 0 8px;font-size:11px;letter-spacing:3px;font-weight:400;text-shadow:none}
 .hl p{margin-top:10px}
-
-/* v6: vékonyabb, görgethető */
 .col{max-width:560px}
 .cells{grid-template-columns:1fr}
 .duo{grid-template-columns:1fr}
@@ -248,8 +221,6 @@ h1:hover{animation:shim 4s linear infinite,glt .45s steps(2) 2}
 .luc{color:#fff;font-weight:700;text-shadow:0 0 10px rgba(255,255,255,.25)}
 .luc i{font-style:normal;display:inline-block;animation:beat 1.4s ease-in-out infinite}
 .ppl small{color:var(--mute);font-size:12.5px}
-
-/* ===== v7: változatos dizájn + mobil ===== */
 html{-webkit-text-size-adjust:100%}
 #prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:80;background:linear-gradient(90deg,#555,#fff);box-shadow:0 0 10px #fff}
 .cells{gap:16px}
@@ -263,7 +234,6 @@ html{-webkit-text-size-adjust:100%}
 .cells>.code{margin-left:34px}
 .cells>.games{margin-right:18px}
 .cells>.ppl2{margin-left:18px}
-/* mostanában */
 .now{border-left:3px solid #fff;border-radius:6px 14px 14px 6px;background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(255,255,255,.02))}
 .now .row{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-top:1px dashed var(--line);font-size:14.5px;color:#ddd;line-height:1.5}
 .now .row:first-of-type{border-top:0}
@@ -271,7 +241,6 @@ html{-webkit-text-size-adjust:100%}
 .now b{color:#fff}
 .dot{flex:none;width:8px;height:8px;margin-top:17px;border-radius:50%;background:#fff;box-shadow:0 0 0 0 #fff8;animation:pg 2s infinite}
 @keyframes pg{70%{box-shadow:0 0 0 9px #fff0}100%{box-shadow:0 0 0 0 #fff0}}
-/* kód ablak */
 .code{padding:0;background:#0b0b0b;border-radius:10px;font-family:"SFMono-Regular",Consolas,"Courier New",monospace}
 .tb{display:flex;align-items:center;gap:7px;padding:10px 13px;background:#161616;border-bottom:1px solid var(--line);font-size:12px;color:var(--mute)}
 .tb i{width:10px;height:10px;border-radius:50%;background:#444}
@@ -280,7 +249,6 @@ html{-webkit-text-size-adjust:100%}
 .code .c{color:#666}.code .k{color:#fff;font-weight:700}.code .s{color:#bdbdbd;transition:.25s;border-radius:4px;padding:0 3px}
 .code .s:hover{background:#fff;color:#000}
 .code::after{top:30px}
-/* zene */
 .music{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.01));border-radius:20px}
 .eq{display:flex;gap:4px;align-items:flex-end;height:34px;margin:-2px 0 12px}
 .eq i{width:5px;border-radius:2px;background:#fff;height:100%;transform-origin:bottom;animation:eq 1s ease-in-out infinite alternate}
@@ -295,22 +263,18 @@ html{-webkit-text-size-adjust:100%}
 .track em{font-style:normal;font-size:13px;color:var(--mute);margin-right:6px}
 .track b{color:#666;margin:0 14px;font-size:16px}
 .mini{font-size:12.5px!important;color:var(--mute)!important;margin-top:8px}
-/* játékok */
 .games{border-style:dashed;border-radius:6px 24px 6px 24px}
 .stick{display:flex;flex-wrap:wrap;gap:10px 8px;padding:4px 0}
 .stick span{display:inline-block;padding:8px 14px;font-weight:700;font-size:14px;color:#000;background:#e9e9e9;border-radius:4px;transform:rotate(var(--r));box-shadow:3px 3px 0 #555;transition:transform .25s}
 .stick span:nth-child(even){background:#bdbdbd}
 .stick span:hover{transform:rotate(0) scale(1.07)}
-/* emberek */
 .ppl2{border-radius:30px 8px 30px 8px}
 .avs{display:flex;margin:2px 0 12px 10px}
 .avs i{width:42px;height:42px;margin-left:-10px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;color:#fff;background:#1c1c1c;border:2px solid #555;z-index:var(--z);transition:transform .3s}
 .avs i:first-child{background:#fff;color:#000;border-color:#fff}
 .avs i:hover{transform:translateY(-6px)}
-/* nem bírom */
 .nope{border:1px dashed #777;border-radius:4px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 10px,transparent 10px 20px)}
 .nope s{color:#fff;font-weight:800;text-decoration-thickness:3px;letter-spacing:2px;text-transform:uppercase}
-/* discord link */
 .dcl{padding:0;background:none;border:0;border-radius:999px}
 .dcl a{position:relative;overflow:hidden;justify-content:center;gap:10px;border-radius:999px;border:1px solid #fff;font-size:15px}
 .dcl a::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);transform:translateX(-120%);animation:sweep 4s ease-in-out infinite}
@@ -325,8 +289,6 @@ html{-webkit-text-size-adjust:100%}
   .box[data-n]::after{font-size:42px}
 }
 @media(prefers-reduced-motion:reduce){.rv{opacity:1!important;transform:none!important;filter:none!important}}
-
-/* ===== v8: rendezettebb, szélesebb, vastagabb ===== */
 .col{max-width:780px}
 .cells{grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
 .cells>.box,.cells>.socials{margin:0!important}
@@ -353,15 +315,11 @@ html{-webkit-text-size-adjust:100%}
   .body{padding:12px 16px 20px}
   .track span{font-size:26px}
 }
-
-/* Spotify élő állapot */
 .spot .cover{background-size:cover;background-position:center;transition:filter .5s,opacity .5s}
 .spot.idle .cover{filter:grayscale(1);opacity:.35}
 .spot.live h2::before{content:"";display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;background:#fff;vertical-align:middle;animation:pg 2s infinite}
 .spot .bar i{transition:width .5s linear}
 .info b,.info span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-
-/* v9: kompakt Spotify + óra widget */
 #page,#page{padding-top:24px}
 @media(max-width:520px){#page{padding-top:16px}}
 .duo{align-items:stretch}
